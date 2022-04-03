@@ -1,12 +1,100 @@
-@import 'media-queries.scss';
-img {
-  @include xs {
-    max-height: calc(100vh - 20px);
+@import "media-queries.scss";
+@import "theme.scss";
+.pancel {
+  box-sizing: border-box;
+  width: calc(100vw);
+  height: 100%;
+  padding: 20px;
+  .card {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    margin-bottom: 2rem;
+    @include mi {
+      flex-direction: column;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .title {
+      letter-spacing: 0.025em;
+      font-weight: 600;
+    }
+    .link {
+      margin-top: 0.25rem;
+      text-decoration: none;
+      color: black;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+    .text-content {
+      margin-top: 0.5rem;
+    }
+    img {
+      @include xs {
+        width: 200px;
+      }
+      @include sm {
+        width: 200px;
+      }
+      @include md {
+        width: 200px;
+      }
+      @include md {
+        width: 200px;
+      }
+      @include lg {
+        width: 200px;
+      }
+      @include xl {
+        width: 200px;
+      }
+    }
   }
-  @include md {
-    max-height: 300px;
-  };
-  @include lg {
-    max-height: 600px;
-  };
+  .switch-theme-btn{
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    font-weight: 600;
+    text-shadow: 0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+@include themeContainer() {
+  .switch-theme-btn {
+    color: $textColor;
+    background-color: $bgColor;
+    &:hover{
+      // 关于filter https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+      filter: drop-shadow(3px 8px 20px red) invert(75%);
+      background-color: $bgColor;
+    }
+  }
+  .pancel {
+    background-color: $bgColor;
+    transition-delay: 100ms;
+    transition-property: background-color;
+    transition-duration: 1000ms;
+  }
+  .card {
+    background-color: $bgColor;
+    border: solid 1px $borderColor;
+    box-shadow: 0px 2px 13px 6px $shadowColor;
+    // 设置上面的属性延迟渲染
+    transition-delay: 100ms;
+    transition-property: background-color, color, box-shadow, border;
+    transition-duration: 1000ms;
+    .title, .link, .text-content {
+      color: $textColor;
+    }
+  }
 }

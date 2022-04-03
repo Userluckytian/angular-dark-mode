@@ -1,1 +1,13 @@
-<img src="https://picsum.photos/id/525/5184/3456" alt="">
+<div class="pancel">
+    <button class="switch-theme-btn" (click)="changeTheme()">{{themeNameBtn | uppercase}}</button>
+
+    <div class="card" *ngFor="let item of [1,2,3]">
+        <img src="./assets/img/demo.jpg" alt="">
+        <div class="content">
+            <div class="title">Case study</div>
+            <a href="#" class="link">Finding customers for your new business</a>
+            <p class="text-content">Getting a new business off the ground is a lot of hard work. Here are five ideas
+                you can use to find your first customers.</p>
+        </div>
+    </div>
+</div>

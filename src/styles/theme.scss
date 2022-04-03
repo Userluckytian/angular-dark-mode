@@ -1,0 +1,61 @@
+@use "./light.theme.scss" as light;
+@use "./dark.theme.scss" as dark;
+
+// 字体颜色
+$textColor: null;
+// 背景颜色
+$bgColor: null;
+// 边框
+$borderColor: null;
+// 阴影
+$shadowColor: null;
+
+// 选择主题
+// 根据参数定义变量值
+@mixin choice($theme: null) {
+  @debug $theme;
+  @if $theme == light {
+    $textColor: light.$color !global; // !global 一定要加，因为$themeColor变量和当前赋值的变量是两个变量，且作用域不同，所以要通过global将变量改为全局变量，进而覆盖我们最外围定义的同名变量。
+    $bgColor: light.$bgColor !global;
+    $borderColor: light.$borderColor !global;
+    $shadowColor: light.$shadowColor !global;
+  } @else if $theme == dark {
+    $textColor: dark.$color !global;
+    $bgColor: dark.$bgColor !global;
+    $borderColor: dark.$borderColor !global;
+    $shadowColor: dark.$shadowColor !global;
+  } @else {
+    $textColor: light.$color !global;
+    $bgColor: light.$bgColor !global;
+    $borderColor: light.$borderColor !global;
+    $shadowColor: light.$shadowColor !global;
+  }
+}
+
+@mixin themeContainer() {
+  /**
+        angular伪类选择器:host-context()
+        这里的:host-context必须要加，
+        因为组件的scss文件是从属于组件本身的，
+        所以我们使用的body[app-theme-style="light"]类名会导致组件无法匹配到对应的元素，
+        而使用:host-context伪类选择器可以让当前宿主元素从祖先节点中查找定义了该css类的元素，直到文档根css类。
+    */
+  :host-context(body[app-theme-style="dark"]) {
+    @include choice(dark);
+    //使用对应的主题animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-out-top-left both;
+    @content;
+  }
+  :host-context(body[app-theme-style="light"]) {
+    @include choice(light);
+    @content;
+  }
+}
+
+@keyframes circle-out-top-left {
+  from {
+    clip-path: circle(125%);
+  }
+  to {
+    clip-path: circle(0% at top left);
+  }
+}
