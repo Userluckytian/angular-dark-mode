@@ -1,0 +1,40 @@
+// 响应式： https://www.w3cplus.com/preprocessor/the-solution-to-media-queries-in-sass.html 采用问题解决前的这种，原因：不需要写两遍！
+// 依据zorro标准划分
+@mixin xs {
+  @media (min-width: 480px) and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: 768px) and (max-width: 992px) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: 992px) and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
+
+// 其他文件使用方式：
+// 官网推荐的引入方式：https://angular.cn/guide/workspace-config#style-preprocessor-options
+/**
+  @include xs/md/lg/xl{
+    ...cssStyle
+  }
+  ---------------------
+  eg:
+    @include xs{
+      color: #ffffff
+    }
+*/

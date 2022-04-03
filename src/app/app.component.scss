@@ -1,0 +1,12 @@
+@import 'media-queries.scss';
+img {
+  @include xs {
+    max-height: calc(100vh - 20px);
+  }
+  @include md {
+    max-height: 300px;
+  };
+  @include lg {
+    max-height: 600px;
+  };
+}
