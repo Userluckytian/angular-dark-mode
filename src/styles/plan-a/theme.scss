@@ -10,6 +10,14 @@ $borderColor: null;
 // 阴影
 $shadowColor: null;
 
+// 过渡
+@mixin setTransition() {
+  // 设置上面的属性延迟渲染
+  transition-delay: 100ms;
+  transition-property: background-color, color, box-shadow, border;
+  transition-duration: 1000ms;
+}
+
 // 选择主题
 // 根据参数定义变量值
 @mixin choice($theme: null) {
@@ -42,7 +50,6 @@ $shadowColor: null;
     */
   :host-context(body[app-theme-style="dark"]) {
     @include choice(dark);
-    //使用对应的主题animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-out-top-left both;
     @content;
   }
   :host-context(body[app-theme-style="light"]) {

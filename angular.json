@@ -39,7 +39,9 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/styles"
+                "./src/styles",
+                "./src/styles/plan-a",
+                "./src/styles/plan-b"
               ]
             }
           },

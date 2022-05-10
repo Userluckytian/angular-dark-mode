@@ -20,5 +20,6 @@ export class AppComponent {
       body.setAttribute('app-theme-style', 'light');
     }
   }
+  // 打印
 
 }

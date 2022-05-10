@@ -1,5 +1,6 @@
 <div class="pancel">
-    <button class="switch-theme-btn" (click)="changeTheme()">{{themeNameBtn | uppercase}}</button>
+    <button class="switch-theme-btn-plan-a" (click)="changeTheme()">{{'plan-a' | uppercase}}</button>
+    <button class="switch-theme-btn-plan-b" (click)="changeTheme()">{{'plan-b' | uppercase}}</button>
 
     <div class="card" *ngFor="let item of [1,2,3]">
         <img src="./assets/img/demo.jpg" alt="">

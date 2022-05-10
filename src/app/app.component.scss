@@ -26,7 +26,6 @@
     .link {
       margin-top: 0.25rem;
       text-decoration: none;
-      color: black;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -56,19 +55,48 @@
       }
     }
   }
-  .switch-theme-btn{
+  .switch-theme-btn-plan-a {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     border: none;
     font-weight: 600;
-    text-shadow: 0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;;
-    &:hover{
+    text-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .switch-theme-btn-plan-b {
+    margin-left: 12px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    font-weight: 600;
+    text-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f;
+    &:hover {
       cursor: pointer;
     }
   }
 }
 
+// plan-B
+.switch-theme-btn-plan-b {
+  // 类的内部定义一个mixin函数！
+  @mixin background($color) {
+    @include themeify {
+      background: themed($color);
+    }
+  }
+  color: themify(accent-200);
+  &:hover {
+    background-color: themify(primary-100, 0.5);
+  }
+}
+
+
+
+// plan-A
 @include themeContainer() {
   .switch-theme-btn {
     color: $textColor;
@@ -80,19 +108,14 @@
     }
   }
   .pancel {
+    @include setTransition();
     background-color: $bgColor;
-    transition-delay: 100ms;
-    transition-property: background-color;
-    transition-duration: 1000ms;
   }
   .card {
+    @include setTransition();
     background-color: $bgColor;
     border: solid 1px $borderColor;
     box-shadow: 0px 2px 13px 6px $shadowColor;
-    // 设置上面的属性延迟渲染
-    transition-delay: 100ms;
-    transition-property: background-color, color, box-shadow, border;
-    transition-duration: 1000ms;
     .title, .link, .text-content {
       color: $textColor;
     }
