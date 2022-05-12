@@ -1,6 +1,27 @@
 /*
  * Implementation of themes
  */
+ $themes: (
+  light: (
+    backgroundColor: white,
+    textColor: #408bbd,
+    buttonTextColor: #408bbd,
+    buttonTextTransform: none,
+    buttonTextHoverColor: #61b0e7,
+    buttonColor: #fff,
+    buttonBorder: 2px solid #ff381e,
+  ),
+  dark: (
+    backgroundColor: #222,
+    textColor: #ddd,
+    buttonTextColor: #aaa,
+    buttonTextTransform: uppercase,
+    buttonTextHoverColor: #ddd,
+    buttonColor: #333,
+    buttonBorder: 1px solid #333,
+  ),
+);
+
 @mixin themify($themes) {
   @each $theme, $map in $themes {
     // $theme = light $map = { ... }
@@ -26,6 +47,21 @@
 
 @function themed($key) {
   @return map-get($theme-map, $key);
+}
+
+// 上面代码优化：
+
+@mixin newThemify($themes: $themes) {
+  @each $theme, $map in $themes {
+    :host-context(body[app-theme-style="dark"]) {
+      $theme-map: map-get($themes, $theme) !global;
+      @content;
+    }
+    :host-context(body[app-theme-style="light"]) {
+      $theme-map: map-get($themes, $theme) !global;
+      @content;
+    }
+  }
 }
 
 // 其他文件的代码解释：

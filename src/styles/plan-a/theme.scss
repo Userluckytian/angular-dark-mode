@@ -49,7 +49,7 @@ $shadowColor: null;
         而使用:host-context伪类选择器可以让当前宿主元素从祖先节点中查找定义了该css类的元素，直到文档根css类。
     */
   :host-context(body[app-theme-style="dark"]) {
-    @include choice(dark);
+    @include choice(dark); // 将全局变量放在这里面了！就可以直接使用了！
     @content;
   }
   :host-context(body[app-theme-style="light"]) {
@@ -64,5 +64,17 @@ $shadowColor: null;
   }
   to {
     clip-path: circle(0% at top left);
+  }
+}
+
+// 测试
+@mixin customLightStyle($type: "light") {
+  :host-context(body[app-theme-style=#{$type}]) & {
+    @content;
+  }
+}
+@mixin customDarkStyle($type: "dark") {
+  :host-context(body[app-theme-style=#{$type}]) & {
+    @content;
   }
 }

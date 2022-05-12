@@ -81,43 +81,44 @@
 }
 
 // plan-B
-.switch-theme-btn-plan-b {
-  // 类的内部定义一个mixin函数！
-  @mixin background($color) {
-    @include themeify {
-      background: themed($color);
+// 类的内部定义一个mixin函数！
+@include newThemify() {
+  .switch-theme-btn-plan-b {
+    background: themed(backgroundColor);
+    color: themed(textColor);
+    &:hover {
+      background: themed(buttonColor);
+      color: themed(buttonTextHoverColor);
+      border: themed(buttonBorder);
+      cursor: pointer;
     }
   }
-  color: themify(accent-200);
-  &:hover {
-    background-color: themify(primary-100, 0.5);
-  }
 }
-
-
 
 // plan-A
-@include themeContainer() {
-  .switch-theme-btn {
-    color: $textColor;
-    background-color: $bgColor;
-    &:hover{
-      // 关于filter https://developer.mozilla.org/en-US/docs/Web/CSS/filter
-      filter: drop-shadow(3px 8px 20px red) invert(75%);
-      background-color: $bgColor;
-    }
-  }
-  .pancel {
-    @include setTransition();
-    background-color: $bgColor;
-  }
-  .card {
-    @include setTransition();
-    background-color: $bgColor;
-    border: solid 1px $borderColor;
-    box-shadow: 0px 2px 13px 6px $shadowColor;
-    .title, .link, .text-content {
-      color: $textColor;
-    }
-  }
-}
+// @include themeContainer() {
+//   .switch-theme-btn {
+//     color: $textColor;
+//     background-color: $bgColor;
+//     &:hover {
+//       // 关于filter https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+//       filter: drop-shadow(3px 8px 20px red) invert(75%);
+//       background-color: $bgColor;
+//     }
+//   }
+//   .pancel {
+//     @include setTransition();
+//     background-color: $bgColor;
+//   }
+//   .card {
+//     @include setTransition();
+//     background-color: $bgColor;
+//     border: solid 1px $borderColor;
+//     box-shadow: 0px 2px 13px 6px $shadowColor;
+//     .title,
+//     .link,
+//     .text-content {
+//       color: $textColor;
+//     }
+//   }
+// }
